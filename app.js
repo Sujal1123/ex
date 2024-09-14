@@ -9,9 +9,30 @@ const session = require('express-session');
 const LocalStorage = require("passport-local");
 const plm = require("passport-local-mongoose");
 const User = require("./models/user.js");
-
-
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://sujaldandhale:PgBoh6l72RNS5x9q@cluster1.tkzjs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1";
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
+
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/exp";
 
