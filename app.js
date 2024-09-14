@@ -10,6 +10,9 @@ const LocalStorage = require("passport-local");
 const plm = require("passport-local-mongoose");
 const User = require("./models/user.js");
 
+
+const uri = "mongodb+srv://sujaldandhale:PgBoh6l72RNS5x9q@cluster1.tkzjs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1";
+
 const MONGO_URL = "mongodb://127.0.0.1:27017/exp";
 
 main().then(() => {
