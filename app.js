@@ -50,20 +50,20 @@ app.get("/", (req,res) => {
     res.send("Hi I am Root");
 });
 
-app.get("https://ex-9dc0.onrender.com/login", (req,res) => {
+app.get("/login", (req,res) => {
     res.render("users/login.ejs");
 });
 
-app.post("https://ex-9dc0.onrender.com/login", passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }), async(req,res) => {
+app.post("/login", passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }), async(req,res) => {
     res.redirect("/");
   });
 
 
-  app.get("https://ex-9dc0.onrender.com/signup", (req,res) => {
+  app.get("/signup", (req,res) => {
     res.render("users/signup.ejs");
 });
 
-app.post("https://ex-9dc0.onrender.com/signup", async(req,res) => {
+app.post("/signup", async(req,res) => {
   let {username, email, password} = req.body;
   const newUser = new User({email, username});
   const registeredUser = await User.register(newUser, password);
